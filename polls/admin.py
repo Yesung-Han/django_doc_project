@@ -29,5 +29,3 @@ class Admin_Question(admin.ModelAdmin):
 admin.site.register(Question, Admin_Question)
 admin.site.register(Choice)
 
-
-

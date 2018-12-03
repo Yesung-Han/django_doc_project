@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'django_extensions',
+    'myapp.apps.MyappConfig'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#default settings
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/polls'
+LOGOUT_REDIRECT_URL = '/accounts/polls/'

@@ -1,5 +1,18 @@
+{% if user.is_active %}
+<h4 class = "welcome">
+    Welcome,
+    <strong>{{ user.get_username }}</strong>
+    /
+    <a href={%  url 'polls:logout' %}>logout</a>
+</h4>
+{% else %}
+<a href={%  url 'login' %}>login</a>
+{% endif %}
+
+
+
 {%  load static %}
-<link rel= "stylesheet" type = "text/css" href = "{% static 'polls/style.css' %}>
+<link rel= "stylesheet" type = "text/css" href = "{% static 'polls/style.css' %}">
 
 
 {% if latest_question_list %}

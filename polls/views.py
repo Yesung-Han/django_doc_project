@@ -8,6 +8,8 @@ from .models import Question, Choice
 from django.urls import reverse
 
 from django.views import generic
+from django.contrib.auth import logout as django_logout
+from django.shortcuts import redirect
 # Create your views here.
 '''
 def index(request):
@@ -90,3 +92,6 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question_id,)))
 
 
+def logout(request):
+    django_logout(request)
+    return redirect('polls:index')
