@@ -12,7 +12,6 @@ class Post(models.Model):
 
     create_date = models.DateTimeField('Created date', auto_now_add= True)
     modify_date = models.DateTimeField('Modified date', auto_now = True)
-
     content = models.TextField("CONTENT")
 
     class Meta:

@@ -1,13 +1,10 @@
-{% block title %}register.html{%  endblock %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "css/forms.css" %}">
 
-{%  load staticfiles %}
-{%  block extrastyle %}
-    {%  static "css/forms.css" %}
-{%  endblock %}
 
 {%  block content %}
 <div id = "content">
-    <h1>New User Registration</h1>
+    <h1>회원가입</h1>
 
     <form method = "post" action = ".">
         {% csrf_token %}
@@ -18,7 +15,7 @@
         </p>
         {%  endif %}
 
-        <p>Please enter below...</p>
+        <p>아래 작성란을 작성해 주세요!</p>
         <fieldset class="aligned">
             <div class="form-row">
                 {{ form.username.label_tag }}{{ form.username }}
@@ -35,11 +32,11 @@
         </fieldset>
 
         <div class="submit-row">
-            <input type="submit" value="Register"/>
+            <input type="submit" value="등록"/>
         </div>
 
         <p>
-            <a href="{% url 'login' %}">Back to Log In</a>
+            <a href="{% url 'login' %}"> <<-- 로그인 화면으로 돌아가기 </a>
         </p>
 
         <script type="text/javascript">

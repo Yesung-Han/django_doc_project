@@ -1,17 +1,18 @@
-{%  block title %}register_done.html{%  endblock %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "css/forms.css" %}">
 
 {% block content %}
 <div id = 'content'>
     <h1>
-        Registration Completed Successfully!
+        회원가입이 완료됬습니다.
     </h1>
 
     <p>
-        Thank you for registering!
+        당신이 Kevin's blog 와 함께 할 수 있어서 행복해요!
     </p>
 
     <p>
-        <a href="{%  url 'login' %}"> Login agin</a>
+        <a href="{%  url 'login' %}"> 로그인 하러가기</a>
     </p>
 
 </div>

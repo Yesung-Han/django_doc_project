@@ -20,6 +20,15 @@ div#content {
     right: 50px;
 }
 
+div#pagination {
+    position: relative;
+}
+
+div#postContent {
+    border: solid;
+    padding: 2rem;
+}
+
 .maintitle {
     display: table-cell;
     vertical-align: middle;

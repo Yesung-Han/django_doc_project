@@ -1,0 +1,20 @@
+{% extends 'myapp/homeBar.html' %}
+
+{% block content %}
+    <div id = 'content'>
+        <h1>Post 삭제</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div id="postContent">
+                <p>
+                {{post.modify_date | date:"Y.m.d "}} | {{ post.title_text }} | {{ post.writer.get_username }}
+                </p>
+            </div>
+            <p>
+                해당 포스트가 삭제됩니다. 삭제하시겠습니까?
+            </p>
+            <button type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">취소</button>
+            <input type="submit" value="삭제"/>
+        </form>
+    </div>
+{% endblock %}

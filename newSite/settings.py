@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'django_extensions',
-    'myapp.apps.MyappConfig'
+    'myapp.apps.MyappConfig',
+    'el_pagination'
+
+
 ]
 
 MIDDLEWARE = [
@@ -125,5 +128,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 #default settings
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/polls'
-LOGOUT_REDIRECT_URL = '/accounts/polls/'
+LOGIN_REDIRECT_URL = '/home'

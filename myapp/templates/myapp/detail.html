@@ -1,0 +1,42 @@
+{% extends 'myapp/homeBar.html' %}
+
+{% block content %}
+    <div id = 'content'>
+
+        <h1>{{ post.title_text }}</h1>
+        <h4>{{ post.writer.get_username }}</h4>{{ post.modify_date }}
+        <br/>
+        <br/>
+
+        <div id = postContent>
+
+            <p>
+                {{ post.content }}
+            </p>
+
+        </div>
+       {% if post.writer == user %}
+           <button type="button" onclick="location.href='{% url 'myapp:update' post.id %}'">수정</button>
+           <button type="button" onclick="location.href='{% url 'myapp:delete' post.id %}'">삭제</button>
+       {% endif %}
+        <p>------------------------------</p>
+
+        <div id = 'postComment'>
+            <p>
+                {% for comment in comments %}
+                    <h4>{{ comment.content }} | {{ comment.writer.get_username }}</h4>
+                {% endfor %}
+            </p>
+        </div>
+
+        <div id = 'createComment'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="제출">
+           <button type="button" onclick="location.href='{% url 'myapp:commentCreate' post.pk %}'">댓글 달기</button>
+
+        </div>
+    </div>
+
+
+{% endblock content%}

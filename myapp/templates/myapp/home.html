@@ -1,16 +1,65 @@
 {% extends 'myapp/homeBar.html' %}
 
 {% block content %}
-<div id="content">
-    <h1>Blog List</h1>
+    <div id="content">
 
-    {% for post in posts %}
-        <h2>
-            <a href="1">
-                {{ post.title_text }} | {{post.modify_date | date:"Y.m.d "}}
-            </a>
-        </h2>
+        <h1>Blog List</h1>
 
-    {% endfor %}
-</div>
+
+        <div id="postList">
+            {% for post in posts %}
+                <h2>
+                    <a href="{{ post.id }}">
+                       {{post.modify_date | date:"Y.m.d "}} | {{ post.title_text }} | {{ post.writer.get_username }}
+                    </a>
+                    {% if post.writer == user %}
+                        &nbsp;
+                        <button type="button" onclick="location.href='{% url 'myapp:update' post.id %}'">수정</button>
+                        <button type="button" onclick="location.href='{% url 'myapp:delete' post.id %}'">삭제</button>
+                    {% endif %}
+                </h2>
+
+            {% endfor %}
+        </div>
+
+
+        <div id = "pagination">
+            {% if posts.has_other_pages %}
+                <h2>
+                {% if posts.has_previous %}
+                   <a href="?page={{ posts.previous_page_number }}">&laquo;</a>
+                {% else %}
+                    <span>&laquo;</span>
+                {% endif %}
+                {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                        <span><strong>[{{ i }}]</strong></span>
+                    {% else %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}">&raquo;</a>
+                {% else %}
+                    <span>&raquo;</span>
+                {% endif %}
+                </h2>
+            {% endif %}
+        </div>
+
+        <div id = "searchField">
+            <form action="" method="get">
+                <input type="text" name="q" value="{{ q }}">
+                <input type="submit" value="검색">
+                {% if user.is_active %}
+                <button type="button" onclick="location.href='{% url 'myapp:add' %}'">글쓰기</button>
+                {% else %}
+                {% endif %}
+            </form>
+        </div>
+
+    </div>
+
+    <br>
+
 {% endblock content%}

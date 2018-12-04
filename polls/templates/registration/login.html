@@ -1,16 +1,14 @@
-{% block title %} login.html {% endblock %}
-
 {% load staticfiles %}
-{% block extrastyle %} {%  static "css/forms.css" %}{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static "css/forms.css" %}">
 
 {% block content %}
 <div id = "content">
 
-    <h1>Please Login</h1>
+    <h1>로그인</h1>
     <form action="." method="post">
         {% csrf_token %}
         {% if form.errors %}
-        <p class="errornote "> Wrong! please correct the error(s) below. </p>
+        <p class="errornote "> 회원 정보를 정확히 입력 해 주세요! </p>
         {%  endif %}
 
         <p>Please enter your id and password!</p>
@@ -27,7 +25,7 @@
         <div class = "submit-row">
             <input type = "submit" value="Log In"/>
             <input type = "hidden" name="next" value="{{ next }}" />
-            <a href="{% url 'register' %}">Register</a>
+            <button type="button" onclick="location.href='{% url 'register' %}'">회원가입</button>
         </div>
 
         <script type = "text/javascript">
