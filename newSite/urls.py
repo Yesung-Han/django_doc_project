@@ -20,8 +20,10 @@ from newSite.views import UserCreateView, UserCreateDoneTV
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
+    path('home/', include('myapp.urls')),
 
     path('accounts/', include('django.contrib.auth.urls'), name = 'login'),
     path('accounts/register/', UserCreateView.as_view(), name = 'register'),
     path('accounts/register/done/', UserCreateDoneTV.as_view(), name = 'register_done'),
+
 ]

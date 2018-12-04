@@ -1,0 +1,21 @@
+<div id="header">
+    <h2 class="maintitle">
+        Kevin's Blog
+    </h2>
+
+    {% if user.is_active %}
+    <h4 class = "welcome">
+        Welcome,
+        <strong>{{ user.get_username }}</strong>
+        //
+        &nbsp;logout
+    </h4>
+    {% else %}
+        login
+    {% endif %}
+
+</div>
+
+{% block content %}
+
+{% endblock content%}
