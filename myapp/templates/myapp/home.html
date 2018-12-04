@@ -1,9 +1,7 @@
 {% extends 'myapp/homeBar.html' %}
 
-
-
 {% block content %}
-
+<div id="content">
     <h1>Blog List</h1>
 
     {% for post in posts %}
@@ -14,5 +12,5 @@
         </h2>
 
     {% endfor %}
-
+</div>
 {% endblock content%}
