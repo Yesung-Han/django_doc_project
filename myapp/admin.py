@@ -9,11 +9,8 @@ class CommentInline(admin.TabularInline):
 
 
 class Post_Admin(admin.ModelAdmin):
-
-
     inlines = [CommentInline]
-
-    list_display = ('title_text','writer','modify_date')
+    list_display = ('id','title_text','writer','modify_date','parent_post','depth',)
 
 
 admin.site.register(Post, Post_Admin)

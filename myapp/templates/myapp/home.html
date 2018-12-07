@@ -10,7 +10,16 @@
             {% for post in posts %}
                 <h2>
                     <a href="{{ post.id }}">
-                       {{post.modify_date | date:"Y.m.d "}} | {{ post.title_text }} | {{ post.writer.get_username }}
+                        {% if post.depth == 2 %}
+                        ㄴ&gt;ㄴ&gt;
+                        {% elif post.depth == 1 %}
+                        ㄴ&gt;
+                        {% else %}
+                        {% endif %}
+                        {{ post.title_text }} | {{ post.writer.get_username }}
+                        {% if post.get_comment_count != 0 %}
+                            ({{ post.get_comment_count }})
+                        {% endif %}
                     </a>
                     {% if post.writer == user %}
                         &nbsp;
@@ -49,7 +58,7 @@
 
         <div id = "searchField">
             <form action="" method="get">
-                <input type="text" name="q" value="{{ q }}">
+                <input type="text" name="qf" value="{{ q }}">
                 <input type="submit" value="검색">
                 {% if user.is_active %}
                 <button type="button" onclick="location.href='{% url 'myapp:add' %}'">글쓰기</button>

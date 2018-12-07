@@ -9,32 +9,53 @@
         <br/>
 
         <div id = postContent>
-
-            <p>
                 {{ post.content }}
-            </p>
-
         </div>
-       {% if post.writer == user %}
+        {% if post.writer == user %}
            <button type="button" onclick="location.href='{% url 'myapp:update' post.id %}'">수정</button>
            <button type="button" onclick="location.href='{% url 'myapp:delete' post.id %}'">삭제</button>
-       {% endif %}
+        {% endif %}
+        {% if post.depth == 0 %}
+                {% if user.is_active %}
+                    <button type="button" onclick="location.href='{% url 'myapp:add_repost' post.id %}'">답글</button>
+                {% else %}
+                    <button type="button" onclick="location.href='{% url 'login'%}'">답글</button>
+
+                {% endif %}
+        {% endif %}
         <p>------------------------------</p>
 
         <div id = 'postComment'>
             <p>
                 {% for comment in comments %}
-                    <h4>{{ comment.content }} | {{ comment.writer.get_username }}</h4>
+                    <h4>
+                        {% if comment.depth == 0 %}
+                            {{ comment.content }} | {{ comment.writer.get_username }} | {{ comment.create_date }} 생성 됨
+                            <button type="button" onclick="location.href='{% url 'myapp:add_recomment' comment.id %}'">댓글</button>
+                        {% else %}
+                            ㄴ&gt;
+                            {{ comment.content }} | {{ comment.writer.get_username }} | {{ comment.create_date }} 생성 됨
+                        {% endif %}
+
+                    {% if comment.writer == user  %}
+                        <button type="button" onclick="location.href='{% url 'myapp:comment_update' post.id comment.id %}'">수정</button>
+                        <button type="button" onclick="location.href='{% url 'myapp:comment_delete' post.id comment.id %}'">삭제</button>
+                    {% endif %}
+                    </h4>
                 {% endfor %}
             </p>
         </div>
 
         <div id = 'createComment'>
+            <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="제출">
-           <button type="button" onclick="location.href='{% url 'myapp:commentCreate' post.pk %}'">댓글 달기</button>
-
+                댓글 {{ form.content }}
+               {% if user.is_active == False %}
+                    <button type="button" onclick="location.href='{% url 'login' %}'">등록</button>
+                {% else %}
+                    <input type="submit" value="제출">
+                {% endif %}
+            </form>
         </div>
     </div>
 

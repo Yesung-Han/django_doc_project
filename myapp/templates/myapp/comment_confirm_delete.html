@@ -1,0 +1,21 @@
+{% extends 'myapp/homeBar.html' %}
+
+{% block content %}
+    <div id = 'content'>
+        <h1>댓글 삭제</h1>
+        {{ comment.writer.get_username }} | {{comment.modify_date | date:"Y.m.d "}}
+        <form action="" method="post">
+            {% csrf_token %}
+            <div id="postContent">
+                <p>
+                {{ comment.content }}
+                </p>
+            </div>
+            <p>
+                해당 댓글이 삭제됩니다. 삭제하시겠습니까?
+            </p>
+            <button type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">취소</button>
+            <input type="submit" value="삭제"/>
+        </form>
+    </div>
+{% endblock %}

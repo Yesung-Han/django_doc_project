@@ -1,0 +1,40 @@
+{% extends 'myapp/homeBar.html' %}
+
+{% block content %}
+<div id = 'content'>
+    <h1>
+        {{ pp.id }} Post 답글 작성하기
+    </h1>
+    <h4>
+        {{ user.get_username }}
+    </h4>
+
+    <form action="." method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <p class="errornote">Wrong! Please correct the error(s) below.</p>
+        {% endif %}
+
+        <p> 해당 포스트에 대한 답글을 작성하거나 수정할 수 있습니다. </p>
+        <fieldset class = "aligned">
+            <div class = 'form-row'>
+                제목 <br/> {{ form.title_text }}
+            </div>
+
+            <div class="form-row">
+                내용 <br/> {{ form.content }}
+            </div>
+
+        </fieldset>
+
+        <div class="submit-row">
+            <input type="submit" value="제출"/>
+       </div>
+
+    <script type="text/javascript">
+        doucument.getElementById('id_title_text').focus();
+    </script>
+    </form>
+
+</div>
+{% endblock %}
